@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="./assets/css/styles.css" />
 
     <title>Notflix</title>
 </head>
@@ -38,7 +38,146 @@
   </nav>
 
   <!-- jumbotron/ display area and search form -->
-  
+  <div class="jumbotron jumbotron-fluid">
+    <!-- form start -->
+    <div class="container"  id="search-query">
+      <form>
+        <div class="form-group row">
+          <div class="col">
+            <label for="formGroupExampleInput">Keyword</label>
+            <input type="text" class="form-control" id="title-keyword" placeholder="Add keyword">
+          </div>
+          <div class="col"> 
+            <label for="formGroupExampleInput">Include Actor</label>
+            <input type="text" class="form-control" id="actor-query" placeholder="Actors Name">
+          </div>
+          <div class="col">
+            <label for="formGroupExampleInput">Include Genre?</label>
+            <input type="text" class="form-control" id="genre" placeholder="Genre">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <!-- form end -->
+    <!-- card carosel -->
+    <div class="media-container">
+      <div class="media-scroller">
+        <!--   Group 1 -->
+        <div class="media-group" id="group-1">
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <a class="next" href="#group-2" aria-label="next">
+            <svg>
+              <use href="#next"></use>
+            </svg>
+          </a>
+        </div>
+        <!-- Group 2   -->
+        <div class="media-group" id="group-2">
+          <a class="previous" href="#group-1">
+            <svg>
+              <use href="#previous"></use>
+            </svg>
+          </a>
+          <div class="media-element">
+            <img src="4.jpg" alt="" />
+          </div>
+          <div class="media-element">
+            <img src="5.jpg" alt="" />
+          </div>
+          <div class="media-element">
+            <img src="6.jpg" alt=""/>
+          </div>
+          <a class="next" href="#group-3" aria-label="next">
+            <svg>
+              <use href="#next"></use>
+            </svg>
+          </a>
+        </div>
+        <!-- Group 3   -->
+        <div class="media-group" id="group-3">
+          <a class="previous" href="#group-2">
+            <svg>
+              <use href="#previous"></use>
+            </svg>
+          </a>
+          <div class="media-element">
+            <img src="7.jpg" alt="" />
+          </div>
+          <div class="media-element">
+            <img src="8.jpg" alt="" />
+          </div>
+          <div class="media-element">
+            <img src="9.jpg" alt=""/>
+          </div>
+          <a class="next" href="#group-4" aria-label="next">
+            <svg>
+              <use href="#next"></use>
+            </svg>
+          </a>
+        </div>
+        <!--  Group 4  -->
+        <div class="media-group" id="group-4">
+          <a class="previous" href="#group-3">
+            <svg>
+              <use href="#previous"></use>
+            </svg>
+          </a>
+         <div class="media-element">
+            <img src="10.jpg" alt="" />
+          </div>
+          <div class="media-element">
+            <img src="11.jpg" alt="" />
+          </div>
+          <div class="media-element">
+            <img src="12.jpg" alt=""/>
+          </div>
+        </div>
+        <!-- Pagination Indicators -->
+        <div class="navigation-indicators">
+          <!-- 4 Groups -->
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+<!-- Navigation Icons -->
+    <svg>
+      <symbol id="next" viewBox="0 0 256 512">
+        <path fill="white"
+      d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z" />
+      </symbol>
+      <symbol id="previous" viewBox="0 0 256 512">
+        <path fill="white"
+      d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z" />
+      </symbol>
+    </svg>
+
+  </div>
 
     <div class="input-group">
   <input type="text" class="form-control" placeholder="Search Query" id="search-input">
@@ -46,6 +185,6 @@
     </div>
     <div id="display-movies"></div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="assets/script.js"></script>
+    <script src="./assets/javascript/script.js"></script>
 </body>
 </html>
