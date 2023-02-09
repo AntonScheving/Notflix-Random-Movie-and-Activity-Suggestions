@@ -1,0 +1,2 @@
+USER STORY
+As a user I want to access Notflix homepage and see two functional buttons which I can click to get a movie or activity suggestion. I want to be able to save my movie and activity suggestions. When I click the movie button I want to see the suggested movie title, poster of the movie and a brief plot description.

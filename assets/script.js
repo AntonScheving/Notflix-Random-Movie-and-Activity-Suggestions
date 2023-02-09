@@ -1,3 +1,4 @@
+
 // const omdbApi = "http://www.omdbapi.com/?apikey=trilogy&"
 
 $("#search-button").on("click", function searchQuery(movieData) {
@@ -40,6 +41,7 @@ $.ajax({
 //   }).then(function (response) {
 //     // let posterImg = $("<img>");
 //     // posterImg.attr("src", `https`)
-//     console.log(response);
+// //     console.log(response);
+// // });
 // });
-});
+
