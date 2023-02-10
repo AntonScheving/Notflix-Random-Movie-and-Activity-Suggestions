@@ -33,7 +33,7 @@ https: $("#upcoming-movie-button").on(
       const randomMovie = Math.floor(Math.random() * titles.length);
       const randomTitle = titles[randomMovie];
       console.log(randomTitle);
-//image title description
+//displaying movie details
  const titleDisplay = randomTitle.title
  document.querySelector(".movie-title").textContent=titleDisplay
 const plotDisplay =randomTitle.overview
@@ -55,6 +55,9 @@ $("#random-activity-button").on("click", function activitySearchQuery(activityDa
   }).then(function (response) {
     console.log(response);
   });
+
+  const activityDisplay = randomActivity.activity
+  document.querySelector(".activity-display").textContent=activityDisplay
 });
 
 
