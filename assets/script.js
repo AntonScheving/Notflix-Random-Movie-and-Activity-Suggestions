@@ -1,47 +1,53 @@
-// const omdbApi = "http://www.omdbapi.com/?apikey=trilogy&"
+// TMDB api key:
+// a07046481ae5f3198fbb1019a2af2859
 
-$("#search-button").on("click", function searchQuery(movieData) {
-    // queryURL is the url we'll use to query the API
+// Sample request
+// https://api.themoviedb.org/3/movie/550?api_key=a07046481ae5f3198fbb1019a2af2859
+// Documentation: https://developers.themoviedb.org/3/getting-started/introduction
+// Support forum: https://www.themoviedb.org/talk/category/5047958519c29526b50017d6
+// Wrappers & libraries: https://www.themoviedb.org/documentation/api/wrappers-libraries
+// Service status: https://status.themoviedb.org
 
-    // Begin building an object to contain our API call's query parameters
-    // Set the API key
-    const titleSearchInput = $("#search-input")
-      .val()
-      .trim();
-  
-    // queryURL = queryURL + titleSearchInput + omdbApi;
-  
-console.log(titleSearchInput);
-      const omdbApi = "http://www.omdbapi.com/?t=" + titleSearchInput + "&apikey=trilogy"
+// List of genres:
+// https://api.themoviedb.org/3/genre/movie/list?api_key=a07046481ae5f3198fbb1019a2af2859
 
-    console.log(omdbApi)
-$.ajax({
-    url: omdbApi,
+// get a list of all the movies in theatres for the random movie button
+// https://developers.themoviedb.org/3/movies/get-upcoming
+
+// API query:
+//api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1
+
+https: $("#upcoming-movie-button").on(
+  "click",
+  function movieSearchQuery(movieData) {
+    const upcomingMovieApi =
+      "https://api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1";
+
+    console.log(upcomingMovieApi);
+    $.ajax({
+      url: upcomingMovieApi,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      const titles = response.results;
+      const randomMovie = Math.floor(Math.random() * titles.length);
+      const randomTitle = titles[randomMovie];
+      console.log(randomTitle);
+    });
+  }
+);
+
+// Bored API
+// boredQuery = "http://www.boredapi.com/api/activity/";
+$("#random-activity").on("click", function activitySearchQuery(activityData) {
+  const randomActivity = "http://www.boredapi.com/api/activity/";
+  console.log(randomActivity);
+  $.ajax({
+    url: randomActivity,
     method: "GET",
-  }).then(function (response) {console.log(response)
-    const title = response.Title;
-    const plot = response.Plot;
-    
-    console.log(title)
-    console.log(plot)})
-  
-    // const poster = response.Poster;
-    const image = $("<img>").attr("src", response.Poster);
-    const displayMoviePoster = $("#display-movies");
-    displayMoviePoster.append(image);
-
-    // Poster API
-//     const poster = "http://img.omdbapi.com/?t=" + titleSearchInput + "&apikey=trilogy";
-
-//     console.log(poster);
-//     $.ajax({
-//         url: poster,
-//         method: "GET",
-//   }).then(function (response) {
-//     // let posterImg = $("<img>");
-//     // posterImg.attr("src", `https`)
-//     console.log(response);
-// });
+  }).then(function (response) {
+    console.log(response);
+  });
 });
 
 
