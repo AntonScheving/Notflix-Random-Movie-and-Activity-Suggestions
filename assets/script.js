@@ -39,7 +39,7 @@ https: $("#upcoming-movie-button").on(
 
 // Bored API
 // boredQuery = "http://www.boredapi.com/api/activity/";
-$("#random-activity").on("click", function activitySearchQuery(activityData) {
+$("#random-activity-button").on("click", function activitySearchQuery(activityData) {
   const randomActivity = "http://www.boredapi.com/api/activity/";
   console.log(randomActivity);
   $.ajax({
