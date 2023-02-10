@@ -49,3 +49,7 @@ $("#random-activity").on("click", function activitySearchQuery(activityData) {
     console.log(response);
   });
 });
+
+
+
+
