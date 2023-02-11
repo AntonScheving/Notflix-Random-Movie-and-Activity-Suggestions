@@ -54,10 +54,11 @@ $("#random-activity-button").on("click", function activitySearchQuery(activityDa
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    
+    // Displaying Activity
+    document.querySelector(".activity-display").textContent=response.activity
   });
 
-  const activityDisplay = randomActivity.activity
-  document.querySelector(".activity-display").textContent=activityDisplay
 });
 
 
