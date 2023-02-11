@@ -33,6 +33,13 @@ https: $("#upcoming-movie-button").on(
       const randomMovie = Math.floor(Math.random() * titles.length);
       const randomTitle = titles[randomMovie];
       console.log(randomTitle);
+//displaying movie details
+ const titleDisplay = randomTitle.title
+ document.querySelector(".movie-title").textContent=titleDisplay
+const plotDisplay =randomTitle.overview
+document.querySelector(".movie-description").textContent=plotDisplay
+
+document.querySelector(".movie-url").setAttribute("src", "https://image.tmdb.org/t/p/original" +randomTitle.backdrop_path)
     });
   }
 );
@@ -47,7 +54,11 @@ $("#random-activity-button").on("click", function activitySearchQuery(activityDa
     method: "GET",
   }).then(function (response) {
     console.log(response);
+    
+    // Displaying Activity
+    document.querySelector(".activity-display").textContent=response.activity
   });
+
 });
 
 
