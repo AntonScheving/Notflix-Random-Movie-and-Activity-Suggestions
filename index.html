@@ -15,6 +15,7 @@
     <span class="navbar-brand mb-0 h1">Bored?</span>
   </nav>
   
+  <!-- main section for displaying movies/activity -->
   <div class="container">
     <div class="row row1">
       <div class="col question-mark">
@@ -42,15 +43,34 @@
       </div>
     </div>
     <div class="row row2">
-      <div class="col col-sm-6">
+      <div class="col">
         <button type="button" id="upcoming-movie-button" class="btn">Find me a movie</button>
       </div>
-      <div class="col col-sm-6">
+      <div class="col">
         <button type="button" id="random-activity-button" class="btn">Find me an activity</button>
       </div>
     </div>
-  </div>     
+  </div> 
+  
+  <!-- saved lists -->
+  <div class="container" id="saved-items">
+    <div class="row" id="saved-categories">
+      <div class="col" id="saved-movies">
+        <h4>Watch me later</h4>
+      </div>
+      <div class="col" id="saved-activity">
+        <h4>Try me later</h4>
+      </div>
+    </div>
+    <div class="row" id="saved-lists">
+      <div class="col" id="movies-list">
 
+      </div>
+      <div class="col" id="activity-list">
+
+      </div>
+    </div>
+  </div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

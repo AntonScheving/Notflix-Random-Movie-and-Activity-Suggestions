@@ -29,23 +29,11 @@ body {
     height: 570px;
 }
 
-.movie {
-    width: 380px;
-    height: 570px;
-    background-image: url(./images/gotg.jpeg);
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 20px;
-    margin-top: 15px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
+#saved-items {
+    border: 10px solid var(--Pdrab);
+    border-radius: 10px 10px 10px 10px;
 }
 
-.hide {
-    display: none;
-}
 
 
 
@@ -74,20 +62,3 @@ body {
     height: 570px;
 }
 
-
-
-.text {
-    background: rgb(0,0,0,0.7);
-    width: 100%;
-    padding: 20px 40px;
-    color: black;
-}
-
-.text p {
-    color: rgba(16, 1, 1, 0.7);
-    font-family: Arial;
-}
-
-.text h2 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
