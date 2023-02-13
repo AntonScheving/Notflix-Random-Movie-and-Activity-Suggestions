@@ -34,12 +34,12 @@ https: $("#upcoming-movie-button").on(
       const randomTitle = titles[randomMovie];
       console.log(randomTitle);
 //displaying movie details
- const titleDisplay = randomTitle.title
- document.querySelector(".movie-title").textContent=titleDisplay
-const plotDisplay =randomTitle.overview
-document.querySelector(".movie-description").textContent=plotDisplay
+ const movieDisplay = randomTitle.title + randomTitle.overview 
+ document.querySelector(".movie-display").textContent=movieDisplay
+//const plotDisplay =randomTitle.overview
+//document.querySelector(".movie-description").textContent=plotDisplay
 
-document.querySelector(".movie-url").setAttribute("src", "https://image.tmdb.org/t/p/original" +randomTitle.backdrop_path)
+//document.querySelector(".movie-poster").setAttribute("src", "https://image.tmdb.org/t/p/original" +randomTitle.backdrop_path)
     });
   }
 );
