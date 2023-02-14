@@ -17,10 +17,9 @@
 // API query:
 // https://api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1
 
-
-
-let movieHistory = [];
-let activityHistory = [];
+// to stop same movie/activity from being displayed in watch me later
+let movieHistory = JSON.parse(localStorage.getItem("movieData")) ||[];
+let activityHistory = JSON.parse(localStorage.getItem("activityHistory")) ||[];
 
 $("#upcoming-movie-button").on("click", function movieSearchQuery() {
   const upcomingMovieApi =
@@ -36,34 +35,50 @@ $("#upcoming-movie-button").on("click", function movieSearchQuery() {
     const randomMovie = Math.floor(Math.random() * titles.length);
     const randomTitle = titles[randomMovie];
     console.log(randomTitle);
+
     //displaying movie details
 
     movieHistory.push(randomTitle.title);
 
     renderMovieHistoryButtons();
 
+    
+    const card = document.createElement("div")
+    card.setAttribute("class", " card movie-display")
+    card.setAttribute("style", "width: 18rem;")
+    const img = document.createElement("img")
+    img.setAttribute("class", "card-img-top")
+    img.setAttribute("src", "https://image.tmdb.org/t/p/original" + randomTitle.poster_path
+    );
+    const cardBody = document.createElement("div")
+    cardBody.setAttribute("class", "card-body")
+    const title = document.createElement("h5")
+    title.setAttribute("class", "card-title")
+    title.textContent= randomTitle.title
+    const plot = document.createElement("p")
+    plot.setAttribute("class", "card-text")
+    plot.textContent=randomTitle.overview
 
-    const titleDisplay = randomTitle.title;
-    document.querySelector(".movie-title").textContent = titleDisplay;
-    const plotDisplay = randomTitle.overview;
-    document.querySelector(".movie-description").textContent = plotDisplay;
+cardBody.append(title, plot)
+card.append(img, cardBody)
 
-    document
-      .querySelector(".movie-url")
-      .setAttribute(
-        "src",
-        "https://image.tmdb.org/t/p/original" + randomTitle.backdrop_path
-      );
+    
+    document.querySelector(".movies").innerHTML=""
+    document.querySelector(".movies").append(card);
+  
 
-    localStorage.setItem("movieData", JSON.stringify(randomTitle));
+    
+
+    localStorage.setItem("movieData", JSON.stringify(movieHistory));
   });
 });
-
 
 function renderMovieHistoryButtons() {
   // Deleting the search history prior to adding new search buttons
   // (this is necessary otherwise you will have repeat buttons)
-  $("#movie-buttons-view").empty();
+
+  // changed movie-view to movie list, the correct html location
+  $("#movies-list").empty();
 
   // Looping through the array of history
   for (let i = 0; i < movieHistory.length; i++) {
@@ -82,57 +97,56 @@ function renderMovieHistoryButtons() {
     if (movieHistory.length > 6) {
       let movieData = movieHistory.slice(movieData.length - 6);
     }
-    return JSON.parse(localStorage.getItem("movieData"));
-  }
+
+    //not needed for the time being
+    // return JSON.parse(localStorage.getItem("movieData"));
+ }
 }
 
 // Bored API
 // boredQuery = "http://www.boredapi.com/api/activity/";
-$("#random-activity-button").on("click",
-  function activitySearchQuery() {
-    const randomActivity = "http://www.boredapi.com/api/activity/";
-    console.log(randomActivity);
-    $.ajax({
-      url: randomActivity,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
+$("#random-activity-button").on("click", function activitySearchQuery() {
+  const randomActivity = "http://www.boredapi.com/api/activity/";
+  console.log(randomActivity);
+  $.ajax({
+    url: randomActivity,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
 
-      const activityResponse = response.activity;
-      activityHistory.push(activityResponse);
+    const activityResponse = response.activity;
+    activityHistory.push(response.activity);
 
-      renderActivityHistoryButtons();
+    renderActivityHistoryButtons();
 
+    // Displaying Activity
+  
+    document.querySelector(".activity-display").textContent = response.activity;
+    const randomActivity = response.activity;
 
-      // Displaying Activity
-      document.querySelector(".activity-display").textContent =
-        response.activity;
-        const randomActivity = response.activity;
-
-        localStorage.setItem("activityData", JSON.stringify(randomActivity));
-
-    });
-  }
-);
+    localStorage.setItem("activityData", JSON.stringify(randomActivity));
+  });
+});
 
 function renderActivityHistoryButtons() {
   // Deleting the search history prior to adding new search buttons
   // (this is necessary otherwise you will have repeat buttons)
-  $("#activity-buttons-view").empty();
 
- // Check if the activityHistory array exists in local storage
- let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
+  //renamed to correct location
+  $("#activity-display").empty();
 
-// Concatenate the storedHistory array with the activityHistory array
-activityHistory = storedHistory.concat(activityHistory);
+  // Check if the activityHistory array exists in local storage
+  let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
 
-// Store the updated activityHistory array in local storage
-localStorage.setItem("activityHistory", JSON.stringify(activityHistory));
+  // Concatenate the storedHistory array with the activityHistory array
+  activityHistory = storedHistory.concat(activityHistory);
 
+  // Store the updated activityHistory array in local storage
+  localStorage.setItem("activityHistory", JSON.stringify(activityHistory));
 
-if (activityHistory.length > 6) {
-      activityHistory = activityHistory.slice(activityHistory.length - 6);
-    }
+  if (activityHistory.length > 6) {
+    activityHistory = activityHistory.slice(activityHistory.length - 6);
+  }
 
   // Looping through the array of history
   for (let i = 0; i < activityHistory.length; i++) {
@@ -148,8 +162,7 @@ if (activityHistory.length > 6) {
     // Adding the button to the #search-history div
     $("#activity-list").prepend(a);
     // $("#search-history").append(localStorage.getItem("values"));
-    
   }
 }
 
-renderActivityHistoryButtons()
+renderActivityHistoryButtons();
