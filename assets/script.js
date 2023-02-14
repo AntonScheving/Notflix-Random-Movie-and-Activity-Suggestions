@@ -77,7 +77,7 @@ function renderMovieHistoryButtons() {
     // Providing the initial button text
     a.text(movieHistory[i]);
     // Adding the button to the #search-history div
-    $("#movie-buttons-view").append(a);
+    $("#movies-list").prepend(a);
     // $("#search-history").append(localStorage.getItem("values"));
     if (movieHistory.length > 6) {
       let movieData = movieHistory.slice(movieData.length - 6);
@@ -128,7 +128,9 @@ activityHistory = storedHistory.concat(activityHistory);
 localStorage.setItem("activityHistory", JSON.stringify(activityHistory));
 
 
-
+if (activityHistory.length > 6) {
+      activityHistory = activityHistory.slice(activityHistory.length - 6);
+    }
 
   // Looping through the array of history
   for (let i = 0; i < activityHistory.length; i++) {
@@ -142,12 +144,10 @@ localStorage.setItem("activityHistory", JSON.stringify(activityHistory));
     // Providing the initial button text
     a.text(activityHistory[i]);
     // Adding the button to the #search-history div
-    $("#activity-buttons-view").append(a);
+    $("#activity-list").prepend(a);
     // $("#search-history").append(localStorage.getItem("values"));
-    if (activityHistory.length > 6) {
-      let activityData = activityHistory.slice(activityData.length - 6);
-    }
-    return JSON.parse(localStorage.getItem("activityData"));
+    
   }
 }
 
+renderActivityHistoryButtons()
