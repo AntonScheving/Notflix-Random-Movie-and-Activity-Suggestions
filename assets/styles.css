@@ -53,4 +53,31 @@ body {
 }
 
 
+/* basic styling to check the themes changed */
+/* --------------------------------------- */
+.dark-theme {
+    background-color: black;
+    /* changed color to black to see text */
+    color: black;
+}
+
+.dark-theme.btn {
+    background-color: var(--Pdrab);
+    color: black;
+}
+
+h4.dark-theme {
+    color: var(--Pdrab);
+}
+
+.light-theme {
+    background-color: white;
+    color: black;
+}
+
+.light-theme.btn {
+    background-color: black;
+    color: white;
+}
+/* --------------------------------------- */
 

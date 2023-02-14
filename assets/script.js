@@ -165,4 +165,36 @@ function renderActivityHistoryButtons() {
   }
 }
 
-renderActivityHistoryButtons();
+renderActivityHistoryButtons()
+
+
+
+// Change theme function --------
+// I have added it here but it could be merged with the on(click) function for fetching the API to make it more tidy
+
+$("#upcoming-movie-button").on("click", function () {
+
+  let elements = ["body", "div", "h1", "h2", "h3", "h4", "h5", "h6", "nav", "button"];
+// console.log(elements);
+  for (let i = 0; i < elements.length; i++) {
+    console.log($([i]));
+    if ($(elements[i]).hasClass("light-theme")) {
+      $(elements[i]).removeClass("light-theme");
+      $(elements[i]).addClass("dark-theme");
+    } else ($(elements[i]).addClass("dark-theme"));  
+  }
+  });
+
+  $("#random-activity-button").on("click", function () {
+
+    let elements = ["body", "div", "h1", "h2", "h3", "h4", "h5", "h6", "nav", "button"];
+  // console.log(elements);
+    for (let i = 0; i < elements.length; i++) {
+      console.log($([i]));
+      if ($(elements[i]).hasClass("dark-theme")) {
+        $(elements[i]).removeClass("dark-theme");
+        $(elements[i]).addClass("light-theme");
+      } else ($(elements[i]).addClass("light-theme"));  
+    }
+    });
+
