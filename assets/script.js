@@ -97,6 +97,7 @@ $("#random-activity-button").on("click",
       method: "GET",
     }).then(function (response) {
       console.log(response);
+
       const activityResponse = response.activity;
       activityHistory.push(activityResponse);
 
@@ -109,6 +110,7 @@ $("#random-activity-button").on("click",
         const randomActivity = response.activity;
 
         localStorage.setItem("activityData", JSON.stringify(randomActivity));
+
     });
   }
 );
