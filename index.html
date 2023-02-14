@@ -23,30 +23,6 @@
     <!-- main section for displaying movies/activity -->
     <div class="container">
       <div class="row row1">
-        <div class="col question-mark">
-          <div class="movies">
-            <div class="text">
-              <div class="card" style="width: 18rem">
-                <img class="card-img-top movie-url" alt="..." />
-                <div class="card-body">
-                  <h5 class="card-title movie-title"></h5>
-                  <p class="card-text movie-description"></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col question-mark">
-          <div class="activity">
-            <div class="card" style="width: 18rem">
-              <div class="card-body">
-                <h5 class="card-title activity-display"></h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row row2">
         <div class="col">
           <button type="button" id="upcoming-movie-button" class="btn">
             Find me a movie
@@ -56,6 +32,15 @@
           <button type="button" id="random-activity-button" class="btn">
             Find me an activity
           </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="movies"></div>
+        </div>
+        <div class="col">
+          <div class="activity">
+          </div>
         </div>
       </div>
     </div>
@@ -72,9 +57,7 @@
       </div>
       <div class="row" id="saved-lists">
         <div class="col" id="movies-list"></div>
-        <div id="movie-buttons-view"></div>
         <div class="col" id="activity-list"></div>
-        <div id="activity-buttons-view"></div>
       </div>
     </div>
 

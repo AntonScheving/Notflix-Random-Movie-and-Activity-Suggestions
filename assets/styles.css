@@ -20,14 +20,7 @@ body {
     color: var(--Pdrab);
 }
 
-.question-mark {
-    background-image: url(./images/questionmark.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    width: 380px;
-    height: 570px;
-}
+
 
 #saved-items {
     border: 10px solid var(--Pdrab);
@@ -50,7 +43,8 @@ body {
 .btn {
     background-color: var(--Prust);
     color: var(--Sice);
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -58,7 +52,5 @@ body {
     background-color: var(--Sice);
 }
 
-.row1 {
-    height: 570px;
-}
+
 
