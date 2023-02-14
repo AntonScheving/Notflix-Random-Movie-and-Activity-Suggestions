@@ -57,7 +57,8 @@ body {
 /* --------------------------------------- */
 .dark-theme {
     background-color: black;
-    color: white;
+    /* changed color to black to see text */
+    color: black;
 }
 
 .dark-theme.btn {
