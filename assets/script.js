@@ -55,6 +55,13 @@ $("#upcoming-movie-button").on("click", function movieSearchQuery() {
         "https://image.tmdb.org/t/p/original" + randomTitle.backdrop_path
       );
 
+        let movieTitle = $("<h2>");
+
+        movieTitle.titleDisplay(".movie-display")
+
+        // .createElement(randomTitle.title);
+
+
     localStorage.setItem("movieData", JSON.stringify(randomTitle));
   });
 });
@@ -86,67 +93,80 @@ function renderMovieHistoryButtons() {
   }
 }
 
+ let storedActivityHistory = JSON.parse(localStorage.getItem("activityData")) || [];
+
 // Bored API
 // boredQuery = "http://www.boredapi.com/api/activity/";
 $("#random-activity-button").on("click",
-  function activitySearchQuery() {
+  function activitySearchQuery(event) {
+
+    event.preventDefault();
+
+   
+
+    // storedActivityHistory.push(randomActivity);
+
     const randomActivity = "http://www.boredapi.com/api/activity/";
     console.log(randomActivity);
+  
     $.ajax({
       url: randomActivity,
       method: "GET",
     }).then(function (response) {
       console.log(response);
 
+
+      
       const activityResponse = response.activity;
-      activityHistory.push(activityResponse);
+      // activityHistory.push(activityResponse);
+      console.log(activityResponse);
+      // console.log(activityHistory);
+        localStorage.setItem("activityData", JSON.stringify(activityResponse));
 
-      renderActivityHistoryButtons();
-
-
+      if (activityResponse.length > 6) {
+      activityHistory = activityResponse.slice(activityResponse.length - 6);
+      }
       // Displaying Activity
       document.querySelector(".activity-display").textContent =
         response.activity;
-        const randomActivity = response.activity;
-
-        localStorage.setItem("activityData", JSON.stringify(randomActivity));
+        // const randomActivity = response.activity;
 
     });
+    
+    renderActivityHistoryButtons();
   }
+  
 );
+
+
 
 function renderActivityHistoryButtons() {
   // Deleting the search history prior to adding new search buttons
   // (this is necessary otherwise you will have repeat buttons)
-  $("#activity-buttons-view").empty();
+  $("#activity-list").empty();
 
  // Check if the activityHistory array exists in local storage
- let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
+  let storedActivityHistory = JSON.parse(localStorage.getItem("activityData")) || [];
 
 // Concatenate the storedHistory array with the activityHistory array
-activityHistory = storedHistory.concat(activityHistory);
+  // let activityHistory = storedActivityHistory.push("activityData");
 
 // Store the updated activityHistory array in local storage
-localStorage.setItem("activityHistory", JSON.stringify(activityHistory));
-
-
-if (activityHistory.length > 6) {
-      activityHistory = activityHistory.slice(activityHistory.length - 6);
-    }
+// localStorage.setItem("activityData", JSON.stringify(activityHistory));
 
   // Looping through the array of history
-  for (let i = 0; i < activityHistory.length; i++) {
+  for (let i = 0; i < storedActivityHistory.length; i++) {
     // Then dynamicaly generating buttons for each search made in the array
     // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
     let a = $("<button>");
     // Adding a class of history-btn to the button
     a.addClass("activity-history-btn");
     // Adding a data-attribute
-    a.attr("randomActivity", activityHistory[i]);
+    a.attr("randomActivity", storedActivityHistory[i]);
     // Providing the initial button text
-    a.text(activityHistory[i]);
+    a.text(storedActivityHistory[i]);
     // Adding the button to the #search-history div
-    $("#activity-list").prepend(a);
+    $("#activity-list").append(a);
     // $("#search-history").append(localStorage.getItem("values"));
     
   }
