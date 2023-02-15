@@ -18,12 +18,14 @@
 // https://api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1
 
 // to stop same movie/activity from being displayed in watch me later
-let movieHistory = JSON.parse(localStorage.getItem("movieData")) ||[];
+let movieHistory = JSON.parse(localStorage.getItem("movieData")) || [];
 // let activityHistory = JSON.parse(localStorage.getItem("activityHistory")) ||[];
 
-$("#upcoming-movie-button").on("click", function movieSearchQuery() {
+$("#upcoming-movie-button").on("click", function movieSearchQuery(search) {
   const upcomingMovieApi =
     "https://api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1";
+
+  // const searchQuery = "https://api.themoviedb.org/3/search/movie?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1&include_adult=false&query=" + movieTitle;
 
   console.log(upcomingMovieApi);
   $.ajax({
@@ -36,38 +38,45 @@ $("#upcoming-movie-button").on("click", function movieSearchQuery() {
     const randomTitle = titles[randomMovie];
     console.log(randomTitle);
 
-    //displaying movie details
+    const newMovie = {
+      title: randomTitle.title,
+      poster: randomTitle.poster_path,
+      plot: randomTitle.overview,
+    };
 
-    movieHistory.push(randomTitle.title);
+    console.log(newMovie);
+    //displaying movie details
+    movieHistory.unshift(newMovie.title);
 
     renderMovieHistoryButtons();
 
-    
-    const card = document.createElement("div")
-    card.setAttribute("class", " card movie-display")
-    card.setAttribute("style", "width: 18rem;")
-    const img = document.createElement("img")
-    img.setAttribute("class", "card-img-top")
-    img.setAttribute("src", "https://image.tmdb.org/t/p/original" + randomTitle.poster_path
+    const card = document.createElement("div");
+    card.setAttribute("class", " card movie-display");
+    card.setAttribute("style", "width: 18rem;");
+    const img = document.createElement("img");
+    img.setAttribute("class", "card-img-top");
+    img.setAttribute(
+      "src",
+      "https://image.tmdb.org/t/p/original" + randomTitle.poster_path
     );
-    const cardBody = document.createElement("div")
-    cardBody.setAttribute("class", "card-body")
-    const title = document.createElement("h5")
-    title.setAttribute("class", "card-title")
-    title.textContent= randomTitle.title
-    const plot = document.createElement("p")
-    plot.setAttribute("class", "card-text")
-    plot.textContent=randomTitle.overview
+    const cardBody = document.createElement("div");
+    cardBody.setAttribute("class", "card-body");
+    const title = document.createElement("h5");
+    title.setAttribute("class", "card-title");
+    title.textContent = randomTitle.title;
+    const plot = document.createElement("p");
+    plot.setAttribute("class", "card-text");
+    plot.textContent = randomTitle.overview;
 
-cardBody.append(title, plot)
-card.append(img, cardBody)
+    cardBody.append(title, plot);
+    card.append(img, cardBody);
 
-    
-    document.querySelector(".movies").innerHTML=""
+    document.querySelector(".movies").innerHTML = "";
     document.querySelector(".movies").append(card);
-  
 
-    
+    if (movieHistory.length > 6) {
+      movieHistory.splice(6);
+    }
 
     localStorage.setItem("movieData", JSON.stringify(movieHistory));
   });
@@ -92,16 +101,35 @@ function renderMovieHistoryButtons() {
     // Providing the initial button text
     a.text(movieHistory[i]);
     // Adding the button to the #search-history div
-    $("#movies-list").prepend(a);
+    $("#movies-list").append(a);
     // $("#search-history").append(localStorage.getItem("values"));
-    if (movieHistory.length > 6) {
-      let movieData = movieHistory.slice(movieData.length - 6);
-    }
 
     //not needed for the time being
-    // return JSON.parse(localStorage.getItem("movieData"));
- }
+    // JSON.parse(localStorage.getItem("movieData"));
+  }
 }
+
+renderMovieHistoryButtons();
+
+$("#movies-list").on("click", ".movie-history-btn", historyClick); // When search button is clicked run the above function
+
+function historyClick(event) {
+  console.log("movie history button was clicked");
+  // function for displaying data for previously searched places
+  if (!event.target.matches(".movie-history-btn")) {
+    // If target of click is not a button with class history-btn end function
+    return;
+  }
+  let btn = event.target;
+  let search = btn.getAttribute("randomTitle"); // Get the data-search value from button
+
+  // function displayMovieHistory(search) {
+  //   if ()
+
+  // } // Run fetchAPI with the place name taken from data-search
+}
+
+// searchHistoryContainer.on("click", historyClick); // if a previous place button is clicked, run above function
 
 // Bored API
 // boredQuery = "http://www.boredapi.com/api/activity/";
@@ -114,25 +142,24 @@ $("#random-activity-button").on("click", function activitySearchQuery() {
   }).then(function (response) {
     console.log(response);
 
-    let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
-
-  
+    let storedHistory =
+      JSON.parse(localStorage.getItem("activityHistory")) || [];
 
     const activityResponse = response.activity;
     storedHistory.unshift(activityResponse);
 
-    renderActivityHistoryButtons();
-
     // Displaying Activity
-  
+
     document.querySelector(".activity-display").textContent = response.activity;
     const randomActivity = response.activity;
 
-  if (storedHistory.length > 6) {
-    storedHistory.splice(6);
-  }
-console.log(storedHistory);
+    if (storedHistory.length > 6) {
+      storedHistory.splice(6);
+    }
+    console.log(storedHistory);
     localStorage.setItem("activityHistory", JSON.stringify(storedHistory));
+
+    renderActivityHistoryButtons();
 
     // localStorage.setItem("activityData", JSON.stringify(randomActivity));
   });
@@ -153,8 +180,6 @@ function renderActivityHistoryButtons() {
 
   // Store the updated activityHistory array in local storage
 
-  
-
   // Looping through the array of history
   for (let i = 0; i < storedHistory.length; i++) {
     // Then dynamicaly generating buttons for each search made in the array
@@ -172,36 +197,53 @@ function renderActivityHistoryButtons() {
   }
 }
 
-renderActivityHistoryButtons()
-
-
+renderActivityHistoryButtons();
 
 // Change theme function --------
 // I have added it here but it could be merged with the on(click) function for fetching the API to make it more tidy
 
 $("#upcoming-movie-button").on("click", function () {
-
-  let elements = ["body", "div", "h1", "h2", "h3", "h4", "h5", "h6", "nav", "button"];
-// console.log(elements);
+  let elements = [
+    "body",
+    "div",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "nav",
+    "button",
+  ];
+  // console.log(elements);
   for (let i = 0; i < elements.length; i++) {
     console.log($([i]));
     if ($(elements[i]).hasClass("light-theme")) {
       $(elements[i]).removeClass("light-theme");
       $(elements[i]).addClass("dark-theme");
-    } else ($(elements[i]).addClass("dark-theme"));  
+    } else $(elements[i]).addClass("dark-theme");
   }
-  });
+});
 
-  $("#random-activity-button").on("click", function () {
-
-    let elements = ["body", "div", "h1", "h2", "h3", "h4", "h5", "h6", "nav", "button"];
+$("#random-activity-button").on("click", function () {
+  let elements = [
+    "body",
+    "div",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "nav",
+    "button",
+  ];
   // console.log(elements);
-    for (let i = 0; i < elements.length; i++) {
-      console.log($([i]));
-      if ($(elements[i]).hasClass("dark-theme")) {
-        $(elements[i]).removeClass("dark-theme");
-        $(elements[i]).addClass("light-theme");
-      } else ($(elements[i]).addClass("light-theme"));  
-    }
-    });
-
+  for (let i = 0; i < elements.length; i++) {
+    console.log($([i]));
+    if ($(elements[i]).hasClass("dark-theme")) {
+      $(elements[i]).removeClass("dark-theme");
+      $(elements[i]).addClass("light-theme");
+    } else $(elements[i]).addClass("light-theme");
+  }
+});
