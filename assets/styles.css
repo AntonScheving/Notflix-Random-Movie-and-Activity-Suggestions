@@ -29,7 +29,7 @@ body {
 
 
 #saved-items {
-    border: 10px solid var(--Pdrab);
+    border: 8px solid var(--Prust);
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -39,10 +39,11 @@ body {
 .col {
     display: flex;
     justify-content: center;
+    
 }
 
 .row1 {
-    border: 10px solid var(--Pdrab);
+    border: 8px solid var(--Pdrab);
     border-radius: 10px 10px 10px 10px;
     margin-bottom: 10px;
 }
