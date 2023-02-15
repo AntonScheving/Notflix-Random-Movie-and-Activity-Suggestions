@@ -39,6 +39,9 @@ body {
 .col {
     display: flex;
     justify-content: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
     /* border: 4px solid */
     
 }
@@ -50,10 +53,11 @@ body {
 }
 
 .btn {
-    background-color: var(--Prust);
-    color: var(--Sice);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    background-color: #470249;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    color: #FEF9FE;
 }
 
 .container {
@@ -64,6 +68,11 @@ body {
 
 /* basic styling to check the themes changed */
 /* --------------------------------------- */
+/* .navbar-brand {
+    margin: auto;
+    color: var(--Pdrab);
+} */
+
 .dark-theme {
     background-color: #470249;
     /* changed color to black to see text */
@@ -72,9 +81,10 @@ body {
 
 .dark-theme.btn {
     background-color: var(--Prust);
-    color: var(--Pdrab);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    color: #FEF9FE;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 h4.dark-theme {
@@ -89,8 +99,9 @@ h4.dark-theme {
 .light-theme.btn {
     background-color: var(--Prust);
     color: var(--Pdrab);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 /* --------------------------------------- */
 
