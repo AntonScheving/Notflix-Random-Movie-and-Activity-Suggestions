@@ -1,10 +1,16 @@
 :root {
     --Psage: #86BCBD;
-    --Prust: #D97E54;
-    --Pdrab: #314755;
-    --Sice: #F0F3F4;
+    --Prust: #F2691C;
+    --Pdrab: #470249;
+    --Sice: #FEF9FE;
     --Sfossil: #C9D2D4;
     --Ssand: #B9B0A1;
+}
+
+.logo {
+    position: auto;
+    margin-top: 15px;
+    margin-left: 120px;
 }
 
 body {
@@ -49,7 +55,7 @@ body {
 }
 
 .container {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     background-color: var(--Sice);
 }
 
@@ -57,14 +63,16 @@ body {
 /* basic styling to check the themes changed */
 /* --------------------------------------- */
 .dark-theme {
-    background-color: black;
+    background-color: #470249;
     /* changed color to black to see text */
-    color: black;
+    color: #FEF9FE;
 }
 
 .dark-theme.btn {
-    background-color: var(--Pdrab);
-    color: black;
+    background-color: var(--Prust);
+    color: var(--Pdrab);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 h4.dark-theme {
@@ -73,12 +81,14 @@ h4.dark-theme {
 
 .light-theme {
     background-color: white;
-    color: black;
+    color: #470249;
 }
 
 .light-theme.btn {
-    background-color: black;
-    color: white;
+    background-color: var(--Prust);
+    color: var(--Pdrab);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 /* --------------------------------------- */
 
