@@ -38,6 +38,7 @@ body {
 .row1 {
     border: 10px solid var(--Pdrab);
     border-radius: 10px 10px 10px 10px;
+    margin-bottom: 10px;
 }
 
 .btn {
