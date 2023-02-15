@@ -19,7 +19,7 @@
 
 // to stop same movie/activity from being displayed in watch me later
 let movieHistory = JSON.parse(localStorage.getItem("movieData")) ||[];
-let activityHistory = JSON.parse(localStorage.getItem("activityHistory")) ||[];
+// let activityHistory = JSON.parse(localStorage.getItem("activityHistory")) ||[];
 
 $("#upcoming-movie-button").on("click", function movieSearchQuery() {
   const upcomingMovieApi =
@@ -114,8 +114,12 @@ $("#random-activity-button").on("click", function activitySearchQuery() {
   }).then(function (response) {
     console.log(response);
 
+    let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
+
+  
+
     const activityResponse = response.activity;
-    activityHistory.push(response.activity);
+    storedHistory.unshift(activityResponse);
 
     renderActivityHistoryButtons();
 
@@ -124,7 +128,13 @@ $("#random-activity-button").on("click", function activitySearchQuery() {
     document.querySelector(".activity-display").textContent = response.activity;
     const randomActivity = response.activity;
 
-    localStorage.setItem("activityData", JSON.stringify(randomActivity));
+  if (storedHistory.length > 6) {
+    storedHistory.splice(6);
+  }
+console.log(storedHistory);
+    localStorage.setItem("activityHistory", JSON.stringify(storedHistory));
+
+    // localStorage.setItem("activityData", JSON.stringify(randomActivity));
   });
 });
 
@@ -133,34 +143,31 @@ function renderActivityHistoryButtons() {
   // (this is necessary otherwise you will have repeat buttons)
 
   //renamed to correct location
-  $("#activity-display").empty();
+  $("#activity-list").empty();
 
   // Check if the activityHistory array exists in local storage
   let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
 
   // Concatenate the storedHistory array with the activityHistory array
-  activityHistory = storedHistory.concat(activityHistory);
+  // activityHistory = storedHistory.push(activityHistory);
 
   // Store the updated activityHistory array in local storage
-  localStorage.setItem("activityHistory", JSON.stringify(activityHistory));
 
-  if (activityHistory.length > 6) {
-    activityHistory = activityHistory.slice(activityHistory.length - 6);
-  }
+  
 
   // Looping through the array of history
-  for (let i = 0; i < activityHistory.length; i++) {
+  for (let i = 0; i < storedHistory.length; i++) {
     // Then dynamicaly generating buttons for each search made in the array
     // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
     let a = $("<button>");
     // Adding a class of history-btn to the button
     a.addClass("activity-history-btn");
     // Adding a data-attribute
-    a.attr("randomActivity", activityHistory[i]);
+    a.attr("randomActivity", storedHistory[i]);
     // Providing the initial button text
-    a.text(activityHistory[i]);
+    a.text(storedHistory[i]);
     // Adding the button to the #search-history div
-    $("#activity-list").prepend(a);
+    $("#activity-list").append(a);
     // $("#search-history").append(localStorage.getItem("values"));
   }
 }
