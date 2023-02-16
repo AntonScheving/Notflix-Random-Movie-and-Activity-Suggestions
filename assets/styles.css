@@ -109,6 +109,16 @@ body {
     margin-bottom: 30px;
 }
 
+.navbar-brand.dark-theme {
+    background-color: transparent;
+    color: white;
+}
+
+.navbar-brand.light-theme {
+    background-color: transparent;
+    color: #750579;
+}
+
 h4.dark-theme {
     color: var(--Prust);
 }

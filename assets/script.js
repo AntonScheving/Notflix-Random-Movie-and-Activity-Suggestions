@@ -214,6 +214,7 @@ $("#upcoming-movie-button").on("click", function () {
     "h6",
     "nav",
     "button",
+    "span",
   ];
   // console.log(elements);
   for (let i = 0; i < elements.length; i++) {
@@ -237,6 +238,7 @@ $("#random-activity-button").on("click", function () {
     "h6",
     "nav",
     "button",
+    "span",
   ];
   // console.log(elements);
   for (let i = 0; i < elements.length; i++) {
