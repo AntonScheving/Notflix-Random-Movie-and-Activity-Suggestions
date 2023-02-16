@@ -134,7 +134,7 @@ function historyClick(event) {
 // Bored API
 // boredQuery = "http://www.boredapi.com/api/activity/";
 $("#random-activity-button").on("click", function activitySearchQuery() {
-  const randomActivity = "http://www.boredapi.com/api/activity/";
+  const randomActivity = "https://www.boredapi.com/api/activity/";
   console.log(randomActivity);
   $.ajax({
     url: randomActivity,
