@@ -20,7 +20,7 @@ Deployed website: https://antonscheving.github.io/Notflix-Random-Movie-and-Activ
 <br>
 
 <p align="center">
-  <img alt="Notflix - Random Movie and Activity Suggestions" [Screenshot] src="assets/images/"><br>
+  <img alt="Notflix - Random Movie and Activity Suggestions" [Screenshot] src="assets/images/Notflix-screenshot.png"><br>
 Notflix - Random Movie and Activity Suggestions Screenshot
 </p>
 
@@ -37,6 +37,9 @@ Notflix is built with HTML, CSS, and JavaScript. The following libraries and too
 
 * Bootstrap 5.3.0
 * jQuery 3.5.1
+* TMDB API
+* BORED API
+
 
 <br><br>
 
