@@ -64,8 +64,25 @@ body {
     margin-bottom: 30px;
     background-color: var(--Sice);
 }
-
-
+.movie-history-btn {
+    display: -ms-inline-flexbox;
+    background-color: #470249;
+    border-color:var(--Pdrab);
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #FEF9FE; 
+}
+.activity-history-btn{
+    display: -ms-inline-flexbox;
+    background-color: var(--Prust);
+    font-weight: bold;
+    margin-right: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #FEF9FE; 
+}
 /* basic styling to check the themes changed */
 /* --------------------------------------- */
 /* .navbar-brand {
@@ -76,6 +93,7 @@ body {
 .dark-theme {
     background-color: #300231;
     /* changed color to black to see text */
+    /* movie plot colours */
     color: #750579;
 }
 
