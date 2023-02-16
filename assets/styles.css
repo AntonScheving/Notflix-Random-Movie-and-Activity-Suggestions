@@ -74,9 +74,9 @@ body {
 } */
 
 .dark-theme {
-    background-color: #470249;
+    background-color: #300231;
     /* changed color to black to see text */
-    color: #FEF9FE;
+    color: #750579;
 }
 
 .dark-theme.btn {
