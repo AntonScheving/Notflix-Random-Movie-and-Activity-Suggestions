@@ -1,3 +1,4 @@
+// Additional information for the TMDB API:
 // TMDB api key:
 // a07046481ae5f3198fbb1019a2af2859
 
@@ -17,15 +18,13 @@
 // API query:
 // https://api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1
 
-// to stop same movie/activity from being displayed in watch me later
+// Retrieves the data stored in local storage with the key "movieData". If the retrieved value is null or undefined., an empty array is assigned to the movieHistory variable. The JSON.parse() method is used to convert the retrieved string to a JavaScript object.
 let movieHistory = JSON.parse(localStorage.getItem("movieData")) || [];
-// let activityHistory = JSON.parse(localStorage.getItem("activityHistory")) ||[];
 
-$("#upcoming-movie-button").on("click", function movieSearchQuery(search) {
+//  Click event to a button with an ID of upcoming-movie-button. When the button is clicked, an AJAX request is made to retrieve upcoming movie data from a movie database API. Once the API response is received, the code selects a random movie title, creates a newMovie object, and displays the details of the selected movie on the webpage.
+$("#upcoming-movie-button").on("click", function movieSearchQuery() {
   const upcomingMovieApi =
     "https://api.themoviedb.org/3/movie/upcoming?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1";
-
-  // const searchQuery = "https://api.themoviedb.org/3/search/movie?api_key=a07046481ae5f3198fbb1019a2af2859&language=en-US&page=1&include_adult=false&query=" + movieTitle;
 
   console.log(upcomingMovieApi);
   $.ajax({
@@ -45,7 +44,7 @@ $("#upcoming-movie-button").on("click", function movieSearchQuery(search) {
     };
 
     console.log(newMovie);
-    //displaying movie details
+
     movieHistory.unshift(newMovie.title);
 
     renderMovieHistoryButtons();
@@ -74,19 +73,17 @@ $("#upcoming-movie-button").on("click", function movieSearchQuery(search) {
     document.querySelector(".movies").innerHTML = "";
     document.querySelector(".movies").append(card);
 
+    // check if the movieHistory array has more than six movie titles and removes the oldest title from the array.
     if (movieHistory.length > 6) {
       movieHistory.splice(6);
     }
-
+    // The movieHistory array is then saved to local storage with the key "movieData".
     localStorage.setItem("movieData", JSON.stringify(movieHistory));
   });
 });
 
 function renderMovieHistoryButtons() {
-  // Deleting the search history prior to adding new search buttons
-  // (this is necessary otherwise you will have repeat buttons)
-
-  // changed movie-view to movie list, the correct html location
+  // jQuery to clear the content of the div with the id "movies-list".
   $("#movies-list").empty();
 
   // Looping through the array of history
@@ -120,19 +117,13 @@ function historyClick(event) {
     // If target of click is not a button with class history-btn end function
     return;
   }
-  let btn = event.target;
-  let search = btn.getAttribute("randomTitle"); // Get the data-search value from button
-
-  // function displayMovieHistory(search) {
-  //   if ()
-
-  // } // Run fetchAPI with the place name taken from data-search
 }
 
-// searchHistoryContainer.on("click", historyClick); // if a previous place button is clicked, run above function
+// // Additional information for the Bored API
+// No need for a API key.
+// API query URL: http://www.boredapi.com/api/activity/
 
-// Bored API
-// boredQuery = "http://www.boredapi.com/api/activity/";
+// click event listener for a button with an ID of random-activity-button. When the button is clicked, it triggers a function that performs an AJAX request to the Bored API to get a random activity.
 $("#random-activity-button").on("click", function activitySearchQuery() {
   const randomActivity = "https://www.boredapi.com/api/activity/";
   console.log(randomActivity);
@@ -145,40 +136,33 @@ $("#random-activity-button").on("click", function activitySearchQuery() {
     let storedHistory =
       JSON.parse(localStorage.getItem("activityHistory")) || [];
 
+    // defines a constant variable activityResponse and sets it to the value of the activity property in the response object. It then adds activityResponse to the beginning of the storedHistory array using the unshift() method.
     const activityResponse = response.activity;
     storedHistory.unshift(activityResponse);
 
     // Displaying Activity
 
     document.querySelector(".activity-display").textContent = response.activity;
-    const randomActivity = response.activity;
 
+    // checks the length of storedHistory. If it is greater than 6, it removes the oldest item(s) from the array using the splice() method so that it contains only the 6 most recent activities.
     if (storedHistory.length > 6) {
       storedHistory.splice(6);
     }
     console.log(storedHistory);
     localStorage.setItem("activityHistory", JSON.stringify(storedHistory));
 
+    // Calls the function renderActivityHistoryButtons() to display the history of activities.
     renderActivityHistoryButtons();
-
-    // localStorage.setItem("activityData", JSON.stringify(randomActivity));
   });
 });
 
 function renderActivityHistoryButtons() {
   // Deleting the search history prior to adding new search buttons
   // (this is necessary otherwise you will have repeat buttons)
-
-  //renamed to correct location
   $("#activity-list").empty();
 
-  // Check if the activityHistory array exists in local storage
+  // declares a variable called storedHistory and sets its value to the activityHistory array stored in local storage. If the array doesn't exist in local storage, an empty array is assigned instead.
   let storedHistory = JSON.parse(localStorage.getItem("activityHistory")) || [];
-
-  // Concatenate the storedHistory array with the activityHistory array
-  // activityHistory = storedHistory.push(activityHistory);
-
-  // Store the updated activityHistory array in local storage
 
   // Looping through the array of history
   for (let i = 0; i < storedHistory.length; i++) {
@@ -200,12 +184,13 @@ function renderActivityHistoryButtons() {
 renderActivityHistoryButtons();
 
 // Change theme function --------
-// I have added it here but it could be merged with the on(click) function for fetching the API to make it more tidy
+// I have added it here but it could be merged with the on(click) function for fetching the API to make it more tidy.
 
 $("#upcoming-movie-button").on("click", function () {
   let elements = [
     "body",
     "div",
+    "span",
     "h1",
     "h2",
     "h3",
@@ -213,8 +198,8 @@ $("#upcoming-movie-button").on("click", function () {
     "h5",
     "h6",
     "nav",
+    "<p>",
     "button",
-    "span",
   ];
   // console.log(elements);
   for (let i = 0; i < elements.length; i++) {
@@ -230,6 +215,7 @@ $("#random-activity-button").on("click", function () {
   let elements = [
     "body",
     "div",
+    "span",
     "h1",
     "h2",
     "h3",
@@ -237,8 +223,8 @@ $("#random-activity-button").on("click", function () {
     "h5",
     "h6",
     "nav",
+    "p",
     "button",
-    "span",
   ];
   // console.log(elements);
   for (let i = 0; i < elements.length; i++) {
